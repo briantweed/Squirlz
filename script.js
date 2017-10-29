@@ -11,11 +11,18 @@ channel.bind('my-event', function(data) {
 
 let messages = [];
 
+let acorns = [];
+for (i = 1; i <= 25; i++) {
+    var acorn = {number: i, active: 1};
+    acorns.push(acorn);
+}
+
 let vm = new Vue({
 
     el: '#wrapper',
     data: {
         messages: messages,
+        acorns: acorns,
         squirlz: [
             {
                 name: 'Ralph',
@@ -43,6 +50,11 @@ let vm = new Vue({
                 class: 'col-2'
             },
         ]
+    },
+    methods: {
+        toggle: function (n) {
+            n.active = n.active == 1 ? 0 : 1;
+        }
     }
 
 });

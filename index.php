@@ -51,7 +51,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <link rel="stylesheet" href="styles.css">
 
+        <link rel="prefetch" href="images/background.jpg">
         <link rel="prefetch" href="images/square.png">
+        <link rel="prefetch" href="images/empty.png">
 
     </head>
 
@@ -83,9 +85,9 @@
 
             <div class="row">
                 <div class="grid offset-1 col-5">
-                    <div v-for="n in 25" class="acorn">
-                        <span v-if="n%8==0"><img src="images/empty.png" alt="" class="img-fluid"></span>
-                        <span v-else><img src="images/square.png" alt="" class="img-fluid"></span>
+                    <div v-for="acorn in acorns" class="acorn">
+                        <span v-if="acorn.active"><img :num="acorn.number" src="images/square.png" class="img-fluid" v-on:click="toggle(acorn)"></span>
+                        <span v-else><img :num="acorn.number" src="images/empty.png" class="img-fluid" v-on:click="toggle(acorn)"></span>
                     </div>
                 </div>
                 <div class="col-5">
