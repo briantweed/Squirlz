@@ -1,0 +1,29 @@
+
+/* TEAM */
+
+Web Designer: Brian Tweed
+Twitter: @brtweed
+Facebook: https://www.facebook.com/briantweeddesigns
+Site: http://brtweed.co.uk
+From: Coleraine, N.Ireland, U.K.
+
+
+
+/* COMPANY */
+
+Company: Brian Tweed Desings
+Type: Web Developer
+Location: Coleraine, Northern Ireland
+
+
+
+/* SITE */
+
+Last update: 24-10-2017
+Site Name: Squirlz
+Site URL: http://bertweed.co.uk/squirlz
+Hosted on: 1and1
+Language: English
+Standards: HTML5, CSS3
+Components: Composer, Bootstrap, Pusher, JQuery
+Software: SublimeText
