@@ -47,13 +47,14 @@
 
         <link rel="author" href="humans.txt">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        <link rel="stylesheet" href="styles.css">
-
         <link rel="prefetch" href="images/background.jpg">
         <link rel="prefetch" href="images/square.png">
         <link rel="prefetch" href="images/empty.png">
+        <link rel="prefetch" href="css/styles.css?v=<?php echo VERSION ?>">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="styles.css?v=<?php echo VERSION ?>">
 
     </head>
 
@@ -66,7 +67,7 @@
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center">Squirlz</h1>
-                    <h2 class="text-center">Possible one of the stupidest games ever made</h2>
+                    <h2 class="text-center">Get some nutz</h2>
                 </div>
             </div>  
 
@@ -145,7 +146,7 @@
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script type="text/javascript" src="https://js.pusher.com/4.1/pusher.min.js"></script>
-        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="script.js?v=<?php echo VERSION ?>"></script>
 
     </body>
 
