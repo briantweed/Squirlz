@@ -47,10 +47,10 @@
 
         <link rel="author" href="humans.txt">
 
+        <link rel="prefetch" href="styles.css?v=<?php echo VERSION ?>">
         <link rel="prefetch" href="images/background.jpg">
         <link rel="prefetch" href="images/square.png">
         <link rel="prefetch" href="images/empty.png">
-        <link rel="prefetch" href="css/styles.css?v=<?php echo VERSION ?>">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -113,6 +113,7 @@
                             <div class="form-group">
                                 <label for="name">Name:</label>
                                 <input type="text" class="form-control" id="name" name="name" aria-describedby="name" placeholder="Enter name ...">
+                                <input type="hidden" name="type" value="chat">
                             </div>
                             <div class="form-group">
                                 <label for="message">Message:</label>

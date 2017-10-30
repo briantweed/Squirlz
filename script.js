@@ -8,6 +8,9 @@ const channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
     messages.push(data.message);
 });
+channel.bind('select-event', function(data) {
+    vm.acorns = data.acorns;
+});
 
 let messages = [];
 
@@ -54,6 +57,14 @@ let vm = new Vue({
     methods: {
         toggle: function (n) {
             n.active = n.active == 1 ? 0 : 1;
+            $.ajax({
+                url: "test.php",
+                type: "POST",
+                data: {
+                    type: 'select',
+                    data: this.acorns
+                }
+            });
         }
     }
 

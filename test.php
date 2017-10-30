@@ -17,9 +17,18 @@
         $options
     );
 
-    $data['message'] = $_POST['name'].": ".$_POST['message'];
+    switch($_POST['type'])
+    {
+        case "chat":
+            $data['message'] = $_POST['name'].": ".$_POST['message'];
+            $pusher->trigger('my-channel', 'my-event', $data);
+        break;
 
-    $pusher->trigger('my-channel', 'my-event', $data);
+        case "select":
+            $data['acorns'] = $_POST['acorns'];
+            $pusher->trigger('my-channel', 'select-event', $data);
+        break;
+    }
 
     echo "true";
 
