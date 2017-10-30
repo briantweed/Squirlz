@@ -1,0 +1,149 @@
+@font-face {
+    font-family: "Funky";
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Funky.otf'); 
+}
+
+@font-face {
+    font-family: "BebasNeue";
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/BebasNeue.otf'); 
+}
+
+* {
+    outline: none;
+}
+
+body {
+    background: url('../images/background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+}
+
+h1, h2, h4, .navbar-brand {
+    font-family: 'Funky', Arial, sans-serif;
+}
+
+h1 {
+    font-size: 10rem;
+    margin: 0px 60px 0 0
+}
+
+h2 {
+    font-size: 4rem;
+    margin: -60px -160px 0 0
+}
+
+h3 {
+    position: relative;
+    font-size: 3rem;
+    font-family: 'BebasNeue', Arial, sans-serif;
+    padding-bottom: 15px;
+}
+
+h3:before, h3:after {
+    top: 23px;
+    width: 25%;
+    height: 8px;
+    content: "";
+    position: absolute;
+    border-top: 1px solid #202520;
+    border-bottom: 1px solid #202520;
+}
+
+h3:before {
+    right: 66%;
+}
+
+h3:after {
+    left: 66%;
+}
+
+h4 {
+    font-size: 2.5rem;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    padding-bottom: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+nav.bg-dark {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.1)) !important;
+}
+
+#title-section {
+    overflow: hidden;
+}
+
+
+div.card {
+    background: #FAFAFA;
+    box-shadow: 2px 2px 10px #999;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#characters div.card {
+    border-radius: 15px;
+    border: 5px solid rgba(150,150,150,0.3);
+    transition: all 0.25s ease-in-out;
+}
+
+#characters div.card:hover {
+    border-color: rgba(200,100,200,0.5);
+    transition: all 0.25s ease-in-out;
+}
+
+#characters div.card:hover a {
+    text-decoration: none;
+}
+
+#characters div.card.selected {
+    border-color: #EA2293;
+}
+
+.form-group {
+    position: relative;
+}
+
+input.error, textarea.error {
+    background: #FFF5F5 !important;
+    border-color: #D31212 !important;
+}
+
+label.error {
+    position: absolute;
+    top: 39px;
+    right: 10px;
+    color: #D31212;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+
+footer {
+    padding: 2rem;
+    background: #272739;
+    color: #ccc;
+}

@@ -18,9 +18,14 @@ channel.bind('select-event', function(data) {
 });
 
 let messages = [];
+
 let acorns = [];
+
 for (i = 1; i <= 25; i++) {
-    var acorn = {number: i, active: 1, img: ''};
+    let acorn = {
+        number: i, 
+        active: 1
+    };
     acorns.push(acorn);
 }
 
@@ -30,40 +35,34 @@ let vm = new Vue({
     data: {
         messages: messages,
         acorns: acorns,
-        squirlz: [
-            {
-                name: 'Ralph',
-                image: 'images/characters/ralph.png',
-                class: 'col-2 offset-1'
-            },
-            {
-                name: 'Federico',
-                image: 'images/characters/federico.png',
-                class: 'col-2'
-            },
-            {
-                name: 'Bianca',
-                image: 'images/characters/bianca.png',
-                class: 'col-2'
-            },
-            {
-                name: 'Jay',
-                image: 'images/characters/jay.png',
-                class: 'col-2'
-            },
-            {
-                name: 'Tubz',
-                image: 'images/characters/tubz.png',
-                class: 'col-2'
-            },
-        ]
+        squirlz: [{
+            name: 'Ralph',
+            image: 'images/characters/ralph.png',
+            class: 'col-2 offset-1'
+        },{
+            name: 'Federico',
+            image: 'images/characters/federico.png',
+            class: 'col-2'
+        },{
+            name: 'Bianca',
+            image: 'images/characters/bianca.png',
+            class: 'col-2'
+        },{
+            name: 'Jay',
+            image: 'images/characters/jay.png',
+            class: 'col-2'
+        },{
+            name: 'Tubz',
+            image: 'images/characters/tubz.png',
+            class: 'col-2'
+        }]
     }
 
 });
 
 function toggle(n){
-    let key = n.number - 1;
-    let items = acorns;
+    const key = n.number - 1;
+    const items = acorns;
     items[key].active = n.active == 1 ? 0 : 1;
     $.ajax({
         url: "test.php",
@@ -102,9 +101,17 @@ function addMessage() {
                 data: $("#messageForm").serialize(),
                 success: function() {
                     $('#message').val("");
-                    $('#name').prop("readonly", true);
+                    $('#name').prop('disabled', 'disabled');
                 }
             });
         }
     });
+}
+
+function selectSquirl(name, index) {
+    if($('#name').is(':enabled')) {
+        $('#name option[value="'+name+'"]').prop('selected', true);
+        $('#characters .card').removeClass("selected");
+        $('#characters .card[data-num="'+index+'"]').addClass("selected");
+    }
 }
