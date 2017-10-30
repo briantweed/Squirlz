@@ -91,7 +91,7 @@
                     <div v-for="(squirl, index) in squirlz" :class="squirl.class">
                         <div class="card" :data-num="index">
                             <a href="javascript:void(0)" v-on:click="selectSquirl(squirl.name, index)">
-                                <img class="rounded img-fluid pb-2" :src="squirl.image" :alt="squirl.name">
+                                <img class="rounded img-fluid pb-2" :src="squirl.image" alt="image of the squirrel">
                                 <h4 class="text-primary text-center">{{squirl.name}}</h4>
                             </a>
                         </div>
@@ -108,8 +108,8 @@
                 <div class="row">
                     <div class="grid offset-1 col-5">
                         <div v-for="acorn in acorns" class="acorn">
-                            <span v-if="acorn.active"><img :num="acorn.number" src="images/square.png" alt="acorn" class="img-fluid" v-on:click="toggle(acorn)"></span>
-                            <span v-else><img :num="acorn.number" src="images/empty.png" alt="empty" class="img-fluid" v-on:click="toggle(acorn)"></span>
+                            <span v-if="acorn.active"><img :num="acorn.number" src="images/square.png" alt="a square containing an acorn" class="img-fluid" v-on:click="toggle(acorn)"></span>
+                            <span v-else><img :num="acorn.number" src="images/empty.png" alt="an empty square" class="img-fluid" v-on:click="toggle(acorn)"></span>
                         </div>
                     </div>
                     <div class="col-5">
