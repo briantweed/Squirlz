@@ -25,7 +25,7 @@
         break;
 
         case "select":
-            $data['acorns'] = $_POST['acorns'];
+            $data['acorns'] = $_POST['data'];
             $pusher->trigger('my-channel', 'select-event', $data);
         break;
     }

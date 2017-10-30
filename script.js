@@ -5,18 +5,22 @@ const pusher = new Pusher($('meta[name="_key"]').attr('content'), {
 });
 
 const channel = pusher.subscribe('my-channel');
+
 channel.bind('my-event', function(data) {
     messages.push(data.message);
 });
+
 channel.bind('select-event', function(data) {
-    vm.acorns = data.acorns;
+    let items = data.acorns;
+    $.each(items, function(k,v){
+        acorns[k].active = parseInt(v.active);
+    });
 });
 
 let messages = [];
-
 let acorns = [];
 for (i = 1; i <= 25; i++) {
-    var acorn = {number: i, active: 1};
+    var acorn = {number: i, active: 1, img: ''};
     acorns.push(acorn);
 }
 
@@ -53,22 +57,23 @@ let vm = new Vue({
                 class: 'col-2'
             },
         ]
-    },
-    methods: {
-        toggle: function (n) {
-            n.active = n.active == 1 ? 0 : 1;
-            $.ajax({
-                url: "test.php",
-                type: "POST",
-                data: {
-                    type: 'select',
-                    data: this.acorns
-                }
-            });
-        }
     }
 
 });
+
+function toggle(n){
+    let key = n.number - 1;
+    let items = acorns;
+    items[key].active = n.active == 1 ? 0 : 1;
+    $.ajax({
+        url: "test.php",
+        type: "POST",
+        data: {
+            type: 'select',
+            data: items
+        }
+    });
+}
 
 function addMessage() {
     const name = $('#name').val();
