@@ -22,7 +22,8 @@
         switch($_POST['type'])
         {
             case "chat":
-                $data['message'] = $_POST['name'].": ".$_POST['message'];
+                $data['name'] = $_POST['name'];
+                $data['message'] = $_POST['message'];
                 $pusher->trigger('my-channel', 'my-event', $data);
             break;
 

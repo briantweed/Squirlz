@@ -131,8 +131,8 @@
                     <div class="col-7">
                         <div class="card" style="height: 336px;overflow-y: auto">
                             <ul id="playerList">
-                                <li v-cloak v-for="message in messages">
-                                    {{ message }}
+                                <li v-cloak v-for="message in messages" >
+                                    <img class="rounded" style="height:40px;width:40px;margin-right:7px" :src="message.image" alt="image of the squirrel"> <b>{{ message.name }}</b>: {{ message.message }}
                                 </li>
                             </ul>
                         </div>

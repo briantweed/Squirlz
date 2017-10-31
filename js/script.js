@@ -7,7 +7,15 @@ const pusher = new Pusher($('meta[name="_key"]').attr('content'), {
 const channel = pusher.subscribe('my-channel');
 
 channel.bind('my-event', function(data) {
-    messages.push(data.message);
+    let img;
+    $.each(vm.squirlz, function(index, squirl) {
+        if(squirl.name === data.name) img = squirl.image;
+    });
+    messages.unshift({
+        image: img,
+        name: data.name,
+        message: data.message
+    });
 });
 
 channel.bind('select-event', function(data) {

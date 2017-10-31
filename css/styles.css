@@ -107,6 +107,7 @@ div.card {
 }
 
 #characters div.card {
+    padding: 0px;
     border-radius: 15px;
     transition: all 0.25s ease-in-out;
 }
@@ -114,6 +115,10 @@ div.card {
 #characters div.card:hover {
     border-color: rgba(200,100,200,0.5);
     transition: all 0.25s ease-in-out;
+}
+
+#characters div.card a {
+    padding: 10px;
 }
 
 #characters div.card:hover a {
@@ -148,6 +153,14 @@ label.error {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-gap: 10px;
+}
+
+#playerList li {
+    padding: 5px 0;
+}
+
+#playerList li:not(:last-of-type) {
+    border-bottom: 1px solid #ccc;
 }
 
 footer {
