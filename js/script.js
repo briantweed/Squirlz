@@ -6,15 +6,13 @@ const pusher = new Pusher($('meta[name="_key"]').attr('content'), {
 
 const channel = pusher.subscribe('my-channel');
 
-channel.bind('my-event', function(data) {
-    let img;
-    $.each(vm.squirlz, function(index, squirl) {
-        if(squirl.name === data.name) img = squirl.image;
-    });
+channel.bind('chat-event', function(data) {
+    let squirl = vm.squirlz[data.id];
     messages.unshift({
-        image: img,
-        name: data.name,
-        message: data.message
+        image: squirl.image,
+        name: squirl.name,
+        message: data.message,
+        time: data.time
     });
 });
 
@@ -73,8 +71,11 @@ let vm = new Vue({
         }]
     },
     methods: {
-        selectSquirl: function(name) {
-            this.mysquirl = this.messageSent === false ? name : this.mysquirl;
+        selectSquirl: function(index, squirl) {
+            if(this.messageSent === false) {
+                squirl.id = index;
+                this.mysquirl = squirl;
+            }
         }
     }
 
@@ -85,7 +86,7 @@ function toggle(n){
     const items = acorns;
     items[key].active = n.active == 1 ? 0 : 1;
     $.ajax({
-        url: "test.php",
+        url: "pusher.php",
         type: "POST",
         data: {
             type: 'select',
@@ -114,12 +115,12 @@ function addMessage() {
         },
         submitHandler: function(form) {
             $.ajax({
-                url: "test.php",
+                url: "pusher.php",
                 type: "POST",
                 data: {
                     type: 'chat',
                     csrf: $('meta[name="_token"]').attr('content'),
-                    name: $('#name').val(),
+                    id: $('#id').val(),
                     message: $('#message').val()
                 },
                 success: function() {

@@ -93,8 +93,8 @@
                 <h3 class="text-center">Select a Squirl</h3>
                 <div id="characters" class="row">
                     <div v-cloak v-for="(squirl, index) in squirlz" :class="squirl.class">
-                        <div class="card" :data-num="index" v-bind:class="{'selected': mysquirl == squirl.name, 'locked': squirl.locked == true}">
-                            <a href="javascript:void(0)" v-on:click="selectSquirl(squirl.name)">
+                        <div class="card" :data-num="index" v-bind:class="{'selected': mysquirl.name == squirl.name, 'locked': squirl.locked == true}">
+                            <a href="javascript:void(0)" v-on:click="selectSquirl(index, squirl)">
                                 <img class="rounded img-fluid pb-2" :src="squirl.image" alt="image of the squirrel">
                                 <h4 class="text-primary text-center">{{ squirl.name }}</h4>
                             </a>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <br>
-                <h5 v-cloak v-show="mysquirl" class="text-center">You have selected <b>{{ mysquirl }}</b></h5>
+                <h5 v-cloak v-show="mysquirl" class="text-center">You have selected <b>{{ mysquirl.name }}</b></h5>
                 <br v-show="mysquirl==''">
 
             </section>
@@ -118,7 +118,8 @@
                             <form id="messageForm">
                                 <div class="form-group">
                                     <label for="character">Name:</label>
-                                    <input type="text" class="form-control" id="name" name="name" readonly :value="mysquirl"/>
+                                    <input type="text" class="form-control" id="name" name="name" readonly :value="mysquirl.name"/>
+                                    <input type="hidden" class="form-control" id="id" name="id" readonly :value="mysquirl.id"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Message:</label>
@@ -130,11 +131,18 @@
                     </div>
                     <div class="col-7">
                         <div class="card" style="height: 336px;overflow-y: auto">
-                            <ul id="playerList">
-                                <li v-cloak v-for="message in messages" >
-                                    <img class="rounded" style="height:40px;width:40px;margin-right:7px" :src="message.image" alt="image of the squirrel"> <b>{{ message.name }}</b>: {{ message.message }}
-                                </li>
-                            </ul>
+                            <div id="messageList" class="row" v-cloak v-for="message in messages">
+                                <div class="col-3">
+                                    <img class="rounded" style="height:40px;width:40px;margin-right:7px" :src="message.image" alt="image of the squirrel">
+                                    <b>{{ message.name }}</b>: 
+                                </div>
+                                <div class="col-7">
+                                    {{ message.message }}
+                                </div>
+                                <div class="col-2 text-right">
+                                    <i><small>{{ message.time }}</small></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
