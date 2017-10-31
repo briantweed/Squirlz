@@ -16,6 +16,8 @@
     outline: none;
 }
 
+[v-cloak] {display: none}
+
 body {
     background: url('../images/background.jpg');
     background-attachment: fixed;
@@ -66,6 +68,9 @@ h4 {
     font-size: 2.5rem;
 }
 
+h5 {
+    margin: 0;
+}
 .navbar-brand {
     font-size: 2rem;
     padding-bottom: 0;
@@ -98,11 +103,11 @@ div.card {
     box-shadow: 2px 2px 15px rgba(0,0,0,.35);
     border-radius: 5px;
     padding: 10px;
+    border: 5px solid rgba(150,150,150,0.3);
 }
 
 #characters div.card {
     border-radius: 15px;
-    border: 5px solid rgba(150,150,150,0.3);
     transition: all 0.25s ease-in-out;
 }
 
@@ -118,6 +123,10 @@ div.card {
 #characters div.card.selected {
     border-color: #EA2293;
 }
+#characters div.card.selected.locked {
+    background: #CCCCCC;
+    border-color: #666;
+}
 
 .form-group {
     position: relative;
@@ -129,10 +138,9 @@ input.error, textarea.error {
 }
 
 label.error {
-    position: absolute;
-    top: 39px;
-    right: 10px;
+    display: block;
     color: #D31212;
+    text-align: right;
 }
 
 .grid {

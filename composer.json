@@ -4,7 +4,7 @@
     },
     "autoload": {
         "files": [ 
-            ".env" 
+            "includes/env.php" 
         ]
     }
 }

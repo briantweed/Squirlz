@@ -12,7 +12,9 @@
 
 <!DOCTYPE html>
 
+
 <html lang="en">
+
 
     <head>
 
@@ -58,8 +60,9 @@
 
     </head>
 
-    <body>
 
+
+    <body>
 
 
         <nav class="navbar navbar-dark bg-dark">
@@ -70,6 +73,7 @@
 
         <div id="wrapper" class="container-fluid">
             
+
             
             <section id="title-section">
                 
@@ -88,46 +92,22 @@
                 
                 <h3 class="text-center">Select a Squirl</h3>
                 <div id="characters" class="row">
-                    <div v-for="(squirl, index) in squirlz" :class="squirl.class">
-                        <div class="card" :data-num="index">
-                            <a href="javascript:void(0)" v-on:click="selectSquirl(squirl.name, index)">
+                    <div v-cloak v-for="(squirl, index) in squirlz" :class="squirl.class">
+                        <div class="card" :data-num="index" v-bind:class="{'selected': mysquirl == squirl.name, 'locked': squirl.locked == true}">
+                            <a href="javascript:void(0)" v-on:click="selectSquirl(squirl.name)">
                                 <img class="rounded img-fluid pb-2" :src="squirl.image" alt="image of the squirrel">
-                                <h4 class="text-primary text-center">{{squirl.name}}</h4>
+                                <h4 class="text-primary text-center">{{ squirl.name }}</h4>
                             </a>
                         </div>
                     </div>
                 </div>
+                <br>
+                <h5 v-cloak v-show="mysquirl" class="text-center">You have selected <b>{{ mysquirl }}</b></h5>
+                <br v-show="mysquirl==''">
 
             </section>
 
            
-
-            <section id="game-section">
-                
-                <h3 class="text-center">Select an acorn</h3>
-                <div class="row">
-                    <div class="grid offset-1 col-5">
-                        <div v-for="acorn in acorns" class="acorn">
-                            <span v-if="acorn.active"><img :num="acorn.number" src="images/square.png" alt="a square containing an acorn" class="img-fluid" v-on:click="toggle(acorn)"></span>
-                            <span v-else><img :num="acorn.number" src="images/empty.png" alt="an empty square" class="img-fluid" v-on:click="toggle(acorn)"></span>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="card">
-                            <ul>
-                                <li>Each player selects an available acorn from the grid</li>
-                                <li>If every player selects a unique acorn then the nuts are removed and the game continues</li>
-                                <li>If one or more players select the same acorn then its game over</li>
-                                <li>If one or more players hasn't made a selection when the timer runs out then its game over</li>
-                                <li>Players win when all the acorns have been removed</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-            
 
             <section id="chat-section">
                 
@@ -137,12 +117,8 @@
                         <div class="card">
                             <form id="messageForm">
                                 <div class="form-group">
-                                    <label for="name">Name:</label>
-                                    <select class="form-control" id="name" name="name" aria-describedby="name">
-                                        <option value="">-- select --</option>
-                                        <option v-for="squirl in squirlz" :value="squirl.name">{{squirl.name}}</option>
-                                    </select>
-                                    <input type="hidden" name="type" value="chat">
+                                    <label for="character">Name:</label>
+                                    <input type="text" class="form-control" id="name" name="name" readonly :value="mysquirl"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Message:</label>
@@ -153,20 +129,40 @@
                         </div>
                     </div>
                     <div class="col-7">
-                        <div class="card">
+                        <div class="card" style="height: 336px;overflow-y: auto">
                             <ul id="playerList">
-                                <li v-for="message in messages">
+                                <li v-cloak v-for="message in messages">
                                     {{ message }}
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+                <br>
 
             </section>
 
 
+
+            <section id="game-section">
+                
+                <h3 class="text-center">Select an acorn</h3>
+                <br><br>
+                <div class="row">
+                    <div class="grid offset-4 col-4">
+                        <div v-cloak v-for="acorn in acorns" class="acorn">
+                            <span v-if="acorn.active"><img :num="acorn.number" src="images/square.png" alt="a square containing an acorn" class="img-fluid" v-on:click="toggle(acorn)"></span>
+                            <span v-else><img :num="acorn.number" src="images/empty.png" alt="an empty square" class="img-fluid" v-on:click="toggle(acorn)"></span>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+
+
+
             <div class="clearfix"><br><br><br></div> 
+
 
 
         </div>
@@ -190,5 +186,6 @@
 
 
     </body>
+
 
 </html>

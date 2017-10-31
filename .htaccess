@@ -1,1 +1,7 @@
-RewriteRule ^(\.env) - [F,L,NC]
+<IfModule mod_rewrite.c>
+
+    RewriteEngine on
+
+    RewriteRule ^includes/?$ - [F,L]
+
+</IfModule>
