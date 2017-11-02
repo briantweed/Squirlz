@@ -19,8 +19,7 @@
 [v-cloak] {display: none}
 
 body {
-    background: url('../images/background.jpg');
-    background-color: #28a03e;
+    background: url('../images/background.jpg') #28a03e;
     background-size: contain;
     background-position: top center;
     background-repeat: no-repeat;
