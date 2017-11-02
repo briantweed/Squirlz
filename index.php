@@ -55,6 +55,7 @@
         <link rel="prefetch" href="images/empty.png">
 
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
         <link href="css/styles.css?v=<?php echo VERSION ?>" rel="stylesheet">
 
@@ -92,8 +93,8 @@
                 
                 <h3 class="text-center">Select a Squirl</h3>
                 <div id="characters" class="row">
-                    <div v-cloak v-for="(squirl, index) in squirlz" :class="squirl.class">
-                        <div class="card" :data-num="index" v-bind:class="{'selected': mysquirl.name == squirl.name, 'locked': squirl.locked == true}">
+                    <div class="animated zoomIn" v-cloak v-for="(squirl, index) in squirlz" :class="getClass(index)"  :style="getDelay(index)">
+                        <div class="card" :data-num="index" v-bind:class="{'selected': mysquirl.name == squirl.name, 'locked': squirl.locked !== false}">
                             <a href="javascript:void(0)" v-on:click="selectSquirl(index, squirl)">
                                 <img class="rounded img-fluid pb-2" :src="squirl.image" alt="image of the squirrel">
                                 <h4 class="text-primary text-center">{{ squirl.name }}</h4>
@@ -102,14 +103,16 @@
                     </div>
                 </div>
                 <br>
-                <h5 v-cloak v-show="mysquirl" class="text-center">You have selected <b>{{ mysquirl.name }}</b></h5>
-                <br v-show="mysquirl==''">
+                <h5 v-cloak v-show="mysquirl" class="text-center">
+                    You have selected <b>{{ mysquirl.name }}</b><br>
+                    <a v-bind:class="{ 'animated zoomOut': confirmSquirl != false }" href="javascript:void(0)" v-on:click="lockSquirl()" class="btn btn-lg btn-warning btn-shadow mt-3">confirm</a>
+                </h5>
 
             </section>
 
            
 
-            <section id="chat-section">
+            <section v-show="confirmSquirl" id="chat-section">
                 
                 <h3 class="text-center">Have a chat</h3>
                 <div class="row">
@@ -137,12 +140,22 @@
                                     <b>{{ message.name }}</b>: 
                                 </div>
                                 <div class="col-7">
-                                    {{ message.message }}
+                                    <span v-html="message.message"></span>
                                 </div>
                                 <div class="col-2 text-right">
-                                    <i><small>{{ message.time }}</small></i>
+                                    <small class="text-muted">{{ message.time }}</small>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="clearfix"><br></div>
+
+                <div class="row animated fadeIn" v-show="members">
+                    <div class="offset-1 col-10">
+                        <div class="card text-center">
+                            <span>People Online: {{ members }}</span>
                         </div>
                     </div>
                 </div>
@@ -152,7 +165,7 @@
 
 
 
-            <section id="game-section">
+            <section v-show="confirmSquirl" id="game-section">
                 
                 <h3 class="text-center">Select an acorn</h3>
                 <br><br>
@@ -188,6 +201,7 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js" type="text/javascript" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" type="text/javascript" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" type="text/javascript" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript"></script>
         <script src="https://js.pusher.com/4.1/pusher.min.js" type="text/javascript"></script>
         <script src="js/script.js?v=<?php echo VERSION ?>" type="text/javascript"></script>
